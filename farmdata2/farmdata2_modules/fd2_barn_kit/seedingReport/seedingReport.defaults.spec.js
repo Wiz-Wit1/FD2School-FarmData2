@@ -7,4 +7,9 @@ describe("Test the Seeding Report default values", ()=>{
         cy.get("[data-cy=text-center]")
         .should("have.text","Seeding Report")
     })
+
+    it("Check for Set Dates section", () => {
+        cy.get("legend")  
+            .should("contain", "Set Dates") 
+    })
 })
