@@ -56,4 +56,31 @@ describe('Seeding Report Table Validation', () => {
         // Verify table is not visible
         cy.get('[data-cy=report-table]').should('not.exist')
     })
+
+    it('should set the date range and have rows sorted by date in ascending order', () => {
+        // Set the date range
+        cy.get('input').first()
+            .clear()
+            .type('2019-07-01');
+        cy.get('input').last()
+            .clear()
+            .type('2019-07-31');
+
+        // Click the generate report button
+        cy.get('[data-cy=generate-rpt-btn]').click();
+
+        // Wait for the page to load completely
+        cy.get('[data-cy="report-table"]').should('be.visible');
+
+        // Get all the rows in the table
+        cy.get('[data-cy="report-table"] tbody tr').then(rows => {
+            // Extract the dates from the rows
+            const dates = [...rows].map(row => new Date(row.cells[0].innerText));
+
+            // Check if the dates are sorted in ascending order
+            const sortedDates = [...dates].sort((a, b) => a - b);
+            expect(dates).to.deep.equal(sortedDates);
+        });
+    });
+
 })

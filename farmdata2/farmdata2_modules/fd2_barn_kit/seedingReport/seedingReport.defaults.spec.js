@@ -13,8 +13,9 @@ describe("Test the Seeding Report default values", () => {
     it("Check the default date - end date", () => {
         const today = new Date().toISOString().split("T")[0];
         cy.get("[data-cy=date-range-selection]")
-            .find('input[data-cy="end-date"]').should("have.value", today);
-    });
+          .find("input[data-cy = 'end-date' ]")
+          .should("have.value", today);
+      });
 
     it("Verify Generate Report button label and state", () => {
         cy.get("[data-cy=generate-rpt-btn]")
