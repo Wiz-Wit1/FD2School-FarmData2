@@ -56,4 +56,7 @@ describe('Seeding Report Table Validation', () => {
         // Verify table is not visible
         cy.get('[data-cy=report-table]').should('not.exist')
     })
+
+
+    
 })
