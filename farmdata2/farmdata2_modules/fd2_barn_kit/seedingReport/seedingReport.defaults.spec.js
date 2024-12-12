@@ -34,7 +34,7 @@ describe("Test the Seeding Report default values", () => {
     });
 
     it("Verify the default start date", () => {
-        // // Verify that the default start date is the first day of the current year.
+        // Verify that the default start date is the first day of the current year.
         cy.get('[data-cy=date-range-selection]').within(() => {
             cy.get('input').first()
                 .clear()
