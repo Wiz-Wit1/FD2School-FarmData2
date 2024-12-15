@@ -27,5 +27,15 @@ describe("Test the BarnKit Sub-Tabs", () => {
                     });
             });
     });
-    
-})
+
+    it("Check if the order of table is Info, Seeding Report, and then Transplanting Report.", () =>{
+        // Get the tabs element
+        cy.get("ul.tabs--secondary.pagination.pagination-sm > li > a")
+        .then((tabs) =>{
+            // Check if the tabs are in the correct order 
+            expect(tabs[0]).to.contain.text('Info');
+            expect(tabs[1]).to.contain.text('Seeding Report');
+            expect(tabs[2]).to.contain.text('Transplanting Report');
+        });
+    }); 
+});
