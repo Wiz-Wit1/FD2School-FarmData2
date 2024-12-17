@@ -9,21 +9,29 @@ describe("Test the BarnKit Sub-Tabs", () => {
         cy.visit("/farm/fd2-barn-kit/cypress");
     });
 
-    it("Checks that the BarnKit tab contains exactly 3 sub-tabs in the correct order: 'Info', 'Seeding Report', and 'Transplanting Report'", () => {
+    it("Checks that the BarnKit tab contains exactly 3 visible sub-tabs", () => {
         // Wait for the secondary tabs element to exist
         cy.get("ul.tabs--secondary.pagination", { timeout: 10000 })
             .should("exist")
             .within(() => {
                 // Get all sub-tab links within the secondary tabs list
                 cy.get("li > a")
-                    .should("be.visible") // Ensure tabs are visible
-                    .then((tabs) => {
-                        // Check the number of tabs
-                        expect(tabs).to.have.length(3);
+                    .should("be.visible")
+                    .should("have.length", 3);
+            });
+    });
 
+    it("Verifies that BarnKit sub-tabs are in correct order: 'Info', 'Seeding Report', and 'Transplanting Report'", () => {
+        // Wait for the secondary tabs element to exist
+        cy.get("ul.tabs--secondary.pagination", { timeout: 10000 })
+            .should("exist")
+            .within(() => {
+                // Get all sub-tab links within the secondary tabs list
+                cy.get("li > a")
+                    .should("be.visible")
+                    .then((tabs) => {
                         // Expected tab labels in order
                         const expectedTabs = ["Info", "Seeding Report", "Transplanting Report"];
-
                         // Verify text and order of each tab
                         tabs.each((index, tab) => {
                             expect(tab).to.contain.text(expectedTabs[index]);
