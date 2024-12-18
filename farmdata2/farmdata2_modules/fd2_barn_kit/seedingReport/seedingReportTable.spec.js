@@ -108,12 +108,4 @@ describe('Seeding Report Table Validation', () => {
             }
         });
     });
-<<<<<<< HEAD
 })
-||||||| 3bf104e
-
-})
-=======
-
-})
->>>>>>> origin/test-seed-table
